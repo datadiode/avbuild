@@ -1,0 +1,26 @@
+--- a/makedef
++++ b/makedef
+@@ -32,11 +32,14 @@
+     exit 1
+ fi
+ 
++echo > makedef_objects
++
+ for object in "$@"; do
+     if [ ! -f "$object" ]; then
+         echo "Object does not exist: ${object}" >&2
+         exit 1
+     fi
++    echo $object >> makedef_objects
+ done
+ 
+ # Create a lib temporarily to dump symbols from.
+@@ -46,7 +49,7 @@
+ trap 'rm -f -- $libname' EXIT
+ 
+ if [ -n "$AR" ]; then
+-    $AR rcs ${libname} $@ >/dev/null
++    $AR rcs ${libname} @makedef_objects >/dev/null
+ else
+     lib.exe -out:${libname} $@ >/dev/null
+ fi
