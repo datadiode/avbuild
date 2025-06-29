@@ -67,6 +67,9 @@ before_build:
   - set FFSRC=%CD%\ffmpeg-%FF_VERSION%
 
 build_script:
+# Shorten the path
+  - mklink /D C:\@ "%APPVEYOR_BUILD_FOLDER%"
+  - cd /D C:\@
 # V=1 to check libmfx error, but the error disappears if V=1. WTF
   - if /i not %_CC%==MinGW if /i not %_PLATFORM%==store set V=1
   - if /i %_CC%==MinGW (
@@ -88,12 +91,12 @@ test: off
 artifacts:
   - path: '%SDK_NAME%.7z'  # relative to repo root
 
-deploy:
-  provider: FTP
-  protocol: sftp
-  host: frs.sourceforge.net
-  username: novesky
-  password:
-    secure: 2mQg4oxdX8S7rMJz2TCGGg==
-  folder: /home/frs/project/avbuild/windows-%_PLATFORM% # why always relative path even if starts with / ? I have to make a link home/frs/project/avbuild/xxx => /home/frs/project/avbuild/xxx
-  active_mode: false
+# deploy:
+  # provider: FTP
+  # protocol: sftp
+  # host: frs.sourceforge.net
+  # username: novesky
+  # password:
+    # secure: 2mQg4oxdX8S7rMJz2TCGGg==
+  # folder: /home/frs/project/avbuild/windows-%_PLATFORM% # why always relative path even if starts with / ? I have to make a link home/frs/project/avbuild/xxx => /home/frs/project/avbuild/xxx
+  # active_mode: false
