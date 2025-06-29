@@ -10,29 +10,30 @@ branches:
 # APPVEYOR_BUILD_WORKER_IMAGE is used in environment matrix, image is not
 environment:
   matrix:
-  - _CC: VS2019
-    _PLATFORM: desktop
-    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-  - _CC: VS2019
-    _PLATFORM: store
-    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+  # - _CC: VS2019
+    # _PLATFORM: desktop
+    # APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+  # - _CC: VS2019
+    # _PLATFORM: store
+    # APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
   - _CC: MINGW
     _PLATFORM: desktop
     _CACHE: msys64
-  - _ARCH: arm
-    _CC: VS2013
-    _PLATFORM: phone
-  - _ARCH: x86
-    _CC: VS2013
-    _PLATFORM: store
-  - _ARCH: x86
-    _CC: VS2013
-    _PLATFORM: desktop
+  # - _ARCH: arm
+    # _CC: VS2013
+    # _PLATFORM: phone
+  # - _ARCH: x86
+    # _CC: VS2013
+    # _PLATFORM: store
+  # - _ARCH: x86
+    # _CC: VS2013
+    # _PLATFORM: desktop
 
 matrix:
   fast_finish: false
 
 init:
+  - C:\msys64\mingw64\bin\ar.exe --version
   - echo NUMBER_OF_PROCESSORS=%NUMBER_OF_PROCESSORS%
   - echo PROCESSOR_IDENTIFIER=%PROCESSOR_IDENTIFIER%
   - set MSYS2_PATH_TYPE=inherit
