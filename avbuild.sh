@@ -164,6 +164,7 @@ host_is MinGW || host_is MSYS && {
   which nasm || pacman -Sy --noconfirm --needed make diffutils patch pkg-config nasm yasm $BUILD_TOOLS
 }
 
+mv /mingw64/bin/x86_64-w64-mingw32-gcc.exe /mingw64/bin/x86_64-w64-mingw32-gcc-too-much.exe
 cp $THIS_DIR/too-much.sh /mingw64/bin/x86_64-w64-mingw32-gcc
 
 android_arch(){
