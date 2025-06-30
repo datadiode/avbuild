@@ -164,6 +164,8 @@ host_is MinGW || host_is MSYS && {
   which nasm || pacman -Sy --noconfirm --needed make diffutils patch pkg-config nasm yasm $BUILD_TOOLS
 }
 
+cp $THIS_DIR/too-much.sh /mingw64/bin/x86_64-w64-mingw32-gcc
+
 android_arch(){
   # emulate hash in bash3
   local armv5=armeabi   # ${!armv5} is armeabi<=armeabi<=armv5
